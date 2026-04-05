@@ -19,7 +19,7 @@ const heading = Syne({
 const SITE_URL = 'https://gayduosa.org'
 const ORG_NAME = 'Gayduo Sports Academy'
 const DESCRIPTION =
-  'Gayduo Sports Academy is a non-governmental organisation empowering youth in Monrovia, Liberia through sport, education, and healthcare.'
+  'Gayduo Sports Academy - empowering youth in Liberia through sport, and education.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,6 +34,12 @@ export const metadata: Metadata = {
     'youth sport Monrovia',
     'Liberia football academy',
     'NGO Monrovia',
+    'Football Academy Liberia',
+    'Best Football Academy in Monrovia',
+    'Best Football Academy in Liberia',
+    'Youth Football Academy Liberia',
+    'Youth Development Liberia',
+    'Youth Developement Through Sport Liberia',
     'youth development Liberia',
     'sport for development Africa',
     'Liberia education sport',
@@ -46,7 +52,7 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     url: SITE_URL,
     siteName: ORG_NAME,
-    title: `${ORG_NAME} | Sport, Education & Health in Monrovia, Liberia`,
+    title: `${ORG_NAME} | Sport, & Education in Monrovia, Liberia`,
     description: DESCRIPTION,
     images: [
       {
@@ -59,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${ORG_NAME} | Sport, Education & Health`,
+    title: `${ORG_NAME} | Sport, and Education`,
     description: DESCRIPTION,
     images: ['/og-image.jpg'],
   },

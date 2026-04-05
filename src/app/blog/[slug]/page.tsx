@@ -4,8 +4,6 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
@@ -18,6 +16,7 @@ type Post = {
   featuredImage: string
   author: string
   tags: string[]
+  status?: 'draft' | 'published'
   publishedAt: { seconds: number } | null
   seoTitle?: string
   seoDescription?: string
@@ -27,12 +26,12 @@ async function getPost(slug: string): Promise<Post | null> {
   const q = query(
     collection(db, 'blog_posts'),
     where('slug', '==', slug),
-    where('status', '==', 'published'),
     limit(1)
   )
   const snap = await getDocs(q)
   if (snap.empty) return null
-  return { id: snap.docs[0].id, ...snap.docs[0].data() } as Post
+  const post = { id: snap.docs[0].id, ...snap.docs[0].data() } as Post
+  return post.status === 'published' ? post : null
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -113,9 +112,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
         <article className="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-16">
           <div className="prose prose-sm sm:prose max-w-none text-[#0d0d0d] prose-headings:text-[#01255f] prose-headings:font-bold prose-a:text-[#01255f] prose-strong:text-[#0d0d0d] prose-blockquote:border-l-[#fee11b] prose-blockquote:text-[#5a6478]">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {post.content}
-            </ReactMarkdown>
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
 
           {post.tags?.length > 0 && (

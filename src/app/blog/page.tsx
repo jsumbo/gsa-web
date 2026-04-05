@@ -1,5 +1,5 @@
 import { db } from '@/lib/firebase'
-import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -30,11 +30,12 @@ type Post = {
 async function getPosts(): Promise<Post[]> {
   const q = query(
     collection(db, 'blog_posts'),
-    where('status', '==', 'published'),
-    orderBy('publishedAt', 'desc')
+    where('status', '==', 'published')
   )
   const snap = await getDocs(q)
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() } as Post))
+  return snap.docs
+    .map((d) => ({ id: d.id, ...d.data() } as Post))
+    .sort((a, b) => (b.publishedAt?.seconds ?? 0) - (a.publishedAt?.seconds ?? 0))
 }
 
 function formatDate(ts: Post['publishedAt']) {
