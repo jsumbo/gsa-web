@@ -58,7 +58,6 @@ export default function Navbar() {
             <button onClick={() => go('#about')} className={linkClass}>About</button>
             <button onClick={() => go('#model')} className={linkClass}>Our Model</button>
             <button onClick={() => go('#impact')} className={linkClass}>Impact</button>
-            <button onClick={() => go('#partners')} className={linkClass}>Partners</button>
 
             {/* Team dropdown */}
             <div ref={dropdownRef} className="relative">
@@ -121,7 +120,6 @@ export default function Navbar() {
             <button onClick={() => go('#about')} className={mobileLinkClass}>About</button>
             <button onClick={() => go('#model')} className={mobileLinkClass}>Our Model</button>
             <button onClick={() => go('#impact')} className={mobileLinkClass}>Impact</button>
-            <button onClick={() => go('#partners')} className={mobileLinkClass}>Partners</button>
 
             {/* Team accordion */}
             <div>
