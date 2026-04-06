@@ -38,7 +38,7 @@ export default function AdminTeam() {
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-[#01255f]" style={{ fontFamily: 'var(--font-heading)' }}>
-            Team Members
+            Management Members
           </h1>
           <p className="text-[#5a6478] text-sm mt-1">{members.length} members</p>
         </div>
@@ -92,7 +92,12 @@ export default function AdminTeam() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="font-bold text-[#01255f] text-sm">{m.name}</p>
-                <p className="text-[#5a6478] text-xs">{m.role}</p>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <p className="text-[#5a6478] text-xs">{m.role}</p>
+                  <span className={`text-[9px] uppercase tracking-wider font-bold px-1.5 py-0.5 ${m.section === 'board' ? 'bg-[#01255f] text-white' : 'bg-[#f5f7fc] text-[#5a6478] border border-gray-200'}`}>
+                    {m.section === 'board' ? 'Board' : 'Staff'}
+                  </span>
+                </div>
               </div>
               <div className="flex-shrink-0 text-[10px] text-gray-400 mr-4">Order: {m.order}</div>
               <div className="flex gap-3 flex-shrink-0">

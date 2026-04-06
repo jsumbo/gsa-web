@@ -3,7 +3,6 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import ThreePillars from '@/components/ThreePillars'
 import ImpactMetrics from '@/components/ImpactMetrics'
-import Team from '@/components/Team'
 import Partners from '@/components/Partners'
 import Liberia from '@/components/Mozambique'
 import Contact from '@/components/Contact'
@@ -53,7 +52,6 @@ export default function Home() {
         <ImpactMetrics />
         <Partners />
         <Liberia />
-        <Team />
         <BlogSection />
         <Contact />
       </main>

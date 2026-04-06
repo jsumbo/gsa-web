@@ -83,7 +83,7 @@ export default function AdminLogin() {
       <div className="w-full max-w-sm">
         <div className="bg-[#01255f] p-6 flex justify-center mb-6">
           <div className="relative h-10 w-44">
-            <Image src="/Logo.png" alt="Gayduo Sports Academy" fill className="object-contain" />
+            <Image src="/Logo.png" alt="Gayduo Sports Academy" fill className="object-contain" sizes="176px" priority />
           </div>
         </div>
         <div className="bg-white border border-gray-100 p-8">

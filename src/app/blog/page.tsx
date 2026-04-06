@@ -90,7 +90,7 @@ export default async function BlogPage() {
                       ) : (
                         <div className="w-full h-full bg-[#01255f] flex items-center justify-center">
                           <div className="relative h-10 w-32 opacity-30">
-                            <Image src="/Logo.png" alt="" fill className="object-contain" />
+                            <Image src="/Logo.png" alt="" fill className="object-contain" sizes="128px" />
                           </div>
                         </div>
                       )}

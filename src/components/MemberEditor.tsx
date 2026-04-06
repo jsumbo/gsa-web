@@ -6,9 +6,9 @@ import ImageUpload from '@/components/ImageUpload'
 export type MemberData = {
   name: string
   role: string
-  bio: string
   image: string
   order: number
+  section: 'board' | 'staff'
 }
 
 export type AmbassadorData = {
@@ -34,7 +34,7 @@ type AmbassadorProps = {
 
 type Props = (TeamProps | AmbassadorProps) & { onSaved: () => void; onCancel: () => void }
 
-const emptyTeam: MemberData = { name: '', role: '', bio: '', image: '', order: 99 }
+const emptyTeam: MemberData = { name: '', role: '', image: '', order: 99, section: 'staff' }
 const emptyAmbassador: AmbassadorData = { name: '', title: '', sport: '', bio: '', image: '', order: 99 }
 
 const inputClass = 'w-full border border-gray-200 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-[#01255f] transition-colors'
@@ -116,33 +116,48 @@ export default function MemberEditor(props: Props) {
       </div>
 
       {isTeam ? (
-        <div>
-          <label className={labelClass}>Role / Title</label>
-          <input type="text" value={(data as MemberData).role} onChange={set('role')} className={inputClass} placeholder="e.g. Head Coach" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className={labelClass}>Role / Title</label>
+            <input type="text" value={(data as MemberData).role} onChange={set('role')} className={inputClass} placeholder="e.g. Head Coach" />
+          </div>
+          <div>
+            <label className={labelClass}>Section</label>
+            <select
+              value={(data as MemberData).section}
+              onChange={(e) => setData((d) => ({ ...d, section: e.target.value as 'board' | 'staff' }))}
+              className={inputClass}
+            >
+              <option value="staff">Staff</option>
+              <option value="board">Board</option>
+            </select>
+          </div>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className={labelClass}>Title / Position</label>
-            <input type="text" value={(data as AmbassadorData).title} onChange={set('title')} className={inputClass} placeholder="e.g. Professional Footballer" />
+        <>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className={labelClass}>Title / Position</label>
+              <input type="text" value={(data as AmbassadorData).title} onChange={set('title')} className={inputClass} placeholder="e.g. Professional Footballer" />
+            </div>
+            <div>
+              <label className={labelClass}>Sport</label>
+              <input type="text" value={(data as AmbassadorData).sport} onChange={set('sport')} className={inputClass} placeholder="e.g. Football" />
+            </div>
           </div>
-          <div>
-            <label className={labelClass}>Sport</label>
-            <input type="text" value={(data as AmbassadorData).sport} onChange={set('sport')} className={inputClass} placeholder="e.g. Football" />
-          </div>
-        </div>
-      )}
 
-      <div>
-        <label className={labelClass}>Bio</label>
-        <textarea
-          value={(data as MemberData).bio}
-          onChange={set('bio')}
-          rows={3}
-          className={`${inputClass} resize-none`}
-          placeholder="Short biography…"
-        />
-      </div>
+          <div>
+            <label className={labelClass}>Bio</label>
+            <textarea
+              value={(data as AmbassadorData).bio}
+              onChange={set('bio')}
+              rows={3}
+              className={`${inputClass} resize-none`}
+              placeholder="Short biography…"
+            />
+          </div>
+        </>
+      )}
 
       <div className="flex gap-3 pt-2">
         <button

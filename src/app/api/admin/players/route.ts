@@ -1,8 +1,6 @@
 import { NextRequest } from 'next/server'
 import { db } from '@/lib/firebase'
-import {
-  collection, getDocs, addDoc, orderBy, query, serverTimestamp,
-} from 'firebase/firestore'
+import { collection, getDocs, addDoc, orderBy, query, serverTimestamp } from 'firebase/firestore'
 import { verifySession, COOKIE } from '@/lib/session'
 
 async function auth(req: NextRequest) {
@@ -13,29 +11,25 @@ async function auth(req: NextRequest) {
 export async function GET(req: NextRequest) {
   if (!(await auth(req))) return Response.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const q = query(collection(db, 'team'), orderBy('order', 'asc'))
+  const team = req.nextUrl.searchParams.get('team')
+  const q = query(collection(db, 'players'), orderBy('order', 'asc'))
   const snap = await getDocs(q)
-  const members = snap.docs.map((d) => {
-    const data = d.data()
-    return {
-      id: d.id,
-      ...data,
-      section: data.section === 'board' ? 'board' : 'staff',
-    }
-  })
-  return Response.json({ members })
+  let players = snap.docs.map((d) => ({ id: d.id, ...d.data() }))
+  if (team) players = players.filter((p: Record<string, unknown>) => p.team === team)
+  return Response.json({ players })
 }
 
 export async function POST(req: NextRequest) {
   if (!(await auth(req))) return Response.json({ error: 'Unauthorized' }, { status: 401 })
 
   const body = await req.json()
-  const ref = await addDoc(collection(db, 'team'), {
+  const ref = await addDoc(collection(db, 'players'), {
     name: body.name ?? '',
-    role: body.role ?? '',
+    number: body.number ?? 0,
+    position: body.position ?? 'midfielder',
+    team: body.team ?? 'first-team',
     image: body.image ?? '',
     order: body.order ?? 99,
-    section: body.section === 'board' ? 'board' : 'staff',
     createdAt: serverTimestamp(),
   })
 

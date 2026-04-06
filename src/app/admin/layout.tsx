@@ -13,14 +13,22 @@ import {
   Mail,
   Globe,
   LogOut,
+  ShoppingBag,
+  Image as GalleryIcon,
+  UserCheck,
+  Shield,
 } from 'lucide-react'
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', Icon: LayoutDashboard },
   { href: '/admin/blog', label: 'Blog Posts', Icon: FileText },
-  { href: '/admin/team', label: 'Team', Icon: Users },
+  { href: '/admin/players', label: 'Players', Icon: UserCheck },
+  { href: '/admin/team', label: 'Mgmt. Staff', Icon: Users },
+  { href: '/admin/board', label: 'Board Members', Icon: Shield },
   { href: '/admin/ambassadors', label: 'Ambassadors', Icon: Star },
   { href: '/admin/partners', label: 'Partners', Icon: Handshake },
+  { href: '/admin/shop', label: 'Shop', Icon: ShoppingBag },
+  { href: '/admin/gallery', label: 'Gallery', Icon: GalleryIcon },
   { href: '/admin/contacts', label: 'Contacts', Icon: Inbox },
 ]
 
@@ -37,10 +45,10 @@ function AdminNav() {
   if (pathname === '/admin/login') return null
 
   return (
-    <aside className="fixed top-0 left-0 h-full w-56 bg-[#01255f] flex flex-col z-40">
+    <aside className="fixed top-0 left-0 h-full w-56 bg-[#01255f] flex flex-col z-40 overflow-y-auto">
       <div className="p-5 border-b border-white/10">
         <div className="relative h-12 w-44">
-          <Image src="/Logo.png" alt="Gayduo Sports Academy" fill className="object-contain object-left" />
+          <Image src="/Logo.png" alt="Gayduo Sports Academy" fill className="object-contain object-left" sizes="176px" />
         </div>
         <p className="text-white/40 text-[10px] mt-2 uppercase tracking-widest">Admin Portal</p>
       </div>

@@ -85,7 +85,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${body.variable} ${heading.variable}`}>
+    <html lang="en" className={`${body.variable} ${heading.variable}`} data-scroll-behavior="smooth">
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="shortcut icon" href="/favicon.png" type="image/png" />

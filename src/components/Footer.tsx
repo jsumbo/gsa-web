@@ -60,6 +60,7 @@ export default function Footer() {
                   alt="Gayduo Sports Academy"
                   fill
                   className="object-contain object-left"
+                  sizes="176px"
                 />
               </div>
 
