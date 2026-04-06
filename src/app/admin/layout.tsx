@@ -16,7 +16,7 @@ import {
   ShoppingBag,
   Image as GalleryIcon,
   UserCheck,
-  Shield,
+  ArrowUpRight,
 } from 'lucide-react'
 
 const navItems = [
@@ -24,7 +24,6 @@ const navItems = [
   { href: '/admin/blog', label: 'Blog Posts', Icon: FileText },
   { href: '/admin/players', label: 'Players', Icon: UserCheck },
   { href: '/admin/team', label: 'Mgmt. Staff', Icon: Users },
-  { href: '/admin/board', label: 'Board Members', Icon: Shield },
   { href: '/admin/ambassadors', label: 'Ambassadors', Icon: Star },
   { href: '/admin/partners', label: 'Partners', Icon: Handshake },
   { href: '/admin/shop', label: 'Shop', Icon: ShoppingBag },
@@ -82,10 +81,12 @@ function AdminNav() {
         >
           <Mail size={13} />
           Webmail
+          <ArrowUpRight size={11} />
         </a>
-        <Link href="/" className="flex items-center gap-2 text-white/40 hover:text-white text-xs transition-colors">
+        <Link href="/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/40 hover:text-white text-xs transition-colors">
           <Globe size={13} />
           View Site
+          <ArrowUpRight size={11} />
         </Link>
         <button
           onClick={logout}

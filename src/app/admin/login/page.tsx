@@ -48,7 +48,7 @@ function LoginForm() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-[#01255f]"
-          placeholder="gsa"
+          placeholder="Enter your username"
         />
       </div>
       <div>
